@@ -1,4 +1,4 @@
-package com.benjweber.info448homework1
+package com.benjweber.dotify
 
 import org.junit.Test
 

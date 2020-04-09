@@ -1,3 +1,11 @@
 <resources>
-    <string name="app_name">INFO 448 Homework 1</string>
+    <string name="app_name">Dotify</string>
+    <string name="username">ben.weberj</string>
+    <string name="change_user">Change User</string>
+    <string name="song_name">Thought Contagion</string>
+    <string name="artist_name">Muse</string>
+    <string name="play_count_default">69 plays</string>
+    <string name="user_icon_alt">User profile picture</string>
+    <string name="album_cover_alt">Muse\'s \'Simulation Theory\' album cover</string>
+    <string name="username_hint">Username…</string>
 </resources>
