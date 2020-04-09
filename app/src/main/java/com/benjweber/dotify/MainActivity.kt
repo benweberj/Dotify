@@ -5,9 +5,10 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlin.random.Random
 
 class MainActivity : AppCompatActivity() {
-    private var playCount : Int = kotlin.random.Random.nextInt(100, 10000)
+    private var playCount : Int = Random.nextInt(100, 10000)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -16,8 +17,13 @@ class MainActivity : AppCompatActivity() {
         tvPlayCount.text = "${this.playCount} plays"
         btnPlay.setOnClickListener { this.incrementPlay() }
         btnNext.setOnClickListener { this.announce("next") }
-        btnPrev.setOnClickListener { this.announce("prev") }
+        btnPrev.setOnClickListener { this.announce("previous") }
         btnChangeUser.setOnClickListener { this.changeUser() }
+        tvUsername.setOnLongClickListener {
+            this.changeUser()
+            return@setOnLongClickListener true // not sure why this is needed for a long click
+        }
+
     }
 
     private fun incrementPlay() {
@@ -32,15 +38,34 @@ class MainActivity : AppCompatActivity() {
     private fun changeUser() {
         val action = btnChangeUser.text
         if (action == "Change User") {
+            etUsername.apply {
+                visibility = View.VISIBLE
+                requestFocus()
+            }
             tvUsername.visibility = View.INVISIBLE
-            etUsername.visibility = View.VISIBLE
             btnChangeUser.text = "Apply"
         } else {
-            tvUsername.text = etUsername.text.trim()
-            etUsername.setText("")
-            tvUsername.visibility = View.VISIBLE
-            etUsername.visibility = View.INVISIBLE
-            btnChangeUser.text = "Change User"
+            if (etUsername.text.isEmpty()) {
+                val suggested = createUsername()
+                etUsername.setText(suggested)
+                Toast.makeText(this, "Username can't be empty. '$suggested' is available!", Toast.LENGTH_LONG).show()
+            } else {
+                tvUsername.apply {
+                    text = etUsername.text.trim()
+                    visibility = View.VISIBLE
+                }
+                etUsername.apply {
+                    setText("")
+                    visibility = View.INVISIBLE
+                }
+                btnChangeUser.text = "Change User"
+            }
         }
+    }
+
+    private fun createUsername(): String {
+        val adjectives = listOf("Bent", "Weird", "Toasty", "Irregular", "Quantum", "Springloaded", "Spicy")
+        val nouns = listOf("Rectangle", "Mama", "Program", "Bean", "Meme", "Human")
+        return "${adjectives.random()}${nouns.random()}"
     }
 }
