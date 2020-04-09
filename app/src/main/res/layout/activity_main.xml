@@ -7,50 +7,103 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity"
     android:padding="16dp"
-    android:background="#fff"
->
+    android:background="#333">
     <TextView
         android:id="@+id/tvUsername"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="username_temp"
+        android:text="ben.weberj"
+        android:textColor="#FFF"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="@id/btnChangeUser"
-        app:layout_constraintBottom_toBottomOf="@id/btnChangeUser"
-    />
+        app:layout_constraintBottom_toBottomOf="@id/btnChangeUser" />
     <Button
-        
         android:id="@+id/btnChangeUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="change user"
+        android:textAllCaps="false"
+        android:backgroundTint="#60b389"
+        android:textColor="#EEE"
+        android:text="Change User"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-    />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/albumCover"
-        android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:id="@+id/ivAlbumCover"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintDimensionRatio="1:1"
         android:src="@drawable/muse_cover"
+        android:contentDescription="Simulation Theory album cover"
         android:background="#0000ff"
         android:scaleType="centerCrop"
         app:layout_constraintTop_toBottomOf="@id/btnChangeUser"
-        android:layout_marginTop="10dp"
-    />
+        android:layout_marginTop="10dp" />
 
     <TextView
+        android:id="@+id/tvSongName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/albumCover"
+        app:layout_constraintTop_toBottomOf="@id/ivAlbumCover"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginTop="10dp"
-        android:textSize="25sp"
-        android:text="song_name_temp"
-        android:textStyle="bold"
-    />
+        android:textSize="30sp"
+        android:textColor="#EEE"
+        android:text="Thought Contagion" />
 
+    <TextView
+        android:id="@+id/tvArtist"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/tvSongName"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:textSize="20sp"
+        android:text="Muse"
+        android:textColor="#EEE"
+        android:maxLines="1"
+        android:ellipsize="end" />
 
+    <TextView
+        android:id="@+id/tvPlayCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvArtist"
+        android:textColor="#99EEEEEE"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:text="69 plays" />
+
+    <LinearLayout
+        android:id="@+id/llMediaControls"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvPlayCount">
+
+        <Button
+            android:id="@+id/btnPrev"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:background="@drawable/prev_icon" />
+        <Button
+            android:id="@+id/btnPlay"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="@drawable/play_icon" />
+        <Button
+            android:id="@+id/btnNext"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:background="@drawable/next_icon" />
+    </LinearLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
