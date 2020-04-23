@@ -1,6 +1,7 @@
 package com.benjweber.dotify
 
 import android.content.Context
+import android.graphics.Color
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -29,14 +30,10 @@ class SongListAdapter(library: List<Song>): RecyclerView.Adapter<SongListAdapter
     }
 
     fun shuffleLibrary(newLibrary: List<Song>) {
+        val callback = SongDiffCallback(library, newLibrary)
+        val diff = DiffUtil.calculateDiff(callback)
+        diff.dispatchUpdatesTo(this)
         library = newLibrary
-        notifyDataSetChanged()
-        // Pretty sure below is the better way to do it. Not sure if its supposed to animate
-        // now or when using diff callback, but it doesn't either way
-//        val callback = SongDiffCallback(library, newLibrary)
-//        val diff = DiffUtil.calculateDiff(callback)
-//        diff.dispatchUpdatesTo(this)
-//        library = newLibrary
     }
 
     inner class SongViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

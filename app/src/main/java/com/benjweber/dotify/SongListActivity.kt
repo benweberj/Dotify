@@ -7,6 +7,7 @@ import android.util.Log
 import android.widget.Toast
 import android.widget.Toolbar
 import androidx.recyclerview.widget.RecyclerView
+import com.benjweber.dotify.MainActivity.Companion.CURRENT_SONG
 import com.ericchee.songdataprovider.Song
 import com.ericchee.songdataprovider.SongDataProvider
 import kotlinx.android.synthetic.main.activity_song_list.*
@@ -14,6 +15,7 @@ import kotlinx.android.synthetic.main.activity_song_list.*
 // Song select screen
 class  SongListActivity : AppCompatActivity() {
     private val rvSongs: RecyclerView by lazy { findViewById<RecyclerView>(R.id.rvSongs) }
+    private var selectedSong: Song? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,7 +26,8 @@ class  SongListActivity : AppCompatActivity() {
         val songListAdapter = SongListAdapter(library)
 
         songListAdapter.onSongClicked = { song ->
-//            Toast.makeText(this, "${song.title} was clicked" ,Toast.LENGTH_SHORT).show()
+            selectedSong = song
+            if (song.title == "Thought Contagion") Toast.makeText(this, "Now that's a nice choice." ,Toast.LENGTH_SHORT).show()
             tvCurrentSong.text = "${song.title} - ${song.artist}"
         }
         rvSongs.adapter = songListAdapter
@@ -32,6 +35,7 @@ class  SongListActivity : AppCompatActivity() {
         miniPlayer.bringToFront() // Not sure if theres a way to do this in xml
         miniPlayer.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
+            intent.putExtra(CURRENT_SONG, selectedSong)
             startActivity(intent)
         }
 

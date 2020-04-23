@@ -23,7 +23,7 @@
         android:layout_height="70dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:background="#e000"
+        android:background="@color/clear_dark_blue"
         app:layout_constraintBottom_toBottomOf="parent">
 
         <TextView
