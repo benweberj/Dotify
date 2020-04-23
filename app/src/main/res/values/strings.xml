@@ -8,4 +8,5 @@
     <string name="user_icon_alt">User profile picture</string>
     <string name="album_cover_alt">Muse\'s \'Simulation Theory\' album cover</string>
     <string name="username_hint">Username…</string>
+    <string name="shuffle_alt">Shuffle icon</string>
 </resources>

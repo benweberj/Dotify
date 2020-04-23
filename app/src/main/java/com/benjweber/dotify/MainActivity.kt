@@ -9,6 +9,8 @@ import kotlin.random.Random
 
 class MainActivity : AppCompatActivity() {
     private var playCount : Int = Random.nextInt(100, 10000)
+    private val adjectives = listOf("Bent", "Weird", "Toasty", "Irregular", "Quantum", "Springloaded", "Spicy")
+    private val nouns = listOf("Rectangle", "Mama", "Program", "Bean", "Meme", "Human")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -64,8 +66,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun createUsername(): String {
-        val adjectives = listOf("Bent", "Weird", "Toasty", "Irregular", "Quantum", "Springloaded", "Spicy")
-        val nouns = listOf("Rectangle", "Mama", "Program", "Bean", "Meme", "Human")
         return "${adjectives.random()}${nouns.random()}"
     }
 }

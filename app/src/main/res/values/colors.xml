@@ -3,6 +3,9 @@
     <color name="bg">#0E2B39</color>
     <color name="bg_dark">#000</color>
     <color name="light_blue">#4EBFF1</color>
+    <color name="dark_blue">#1F6C8E</color>
+    <color name="light_green">#60b389</color>
+    <color name="dark_green">#1E563A</color>
     <color name="white">#FFF</color>
     <color name="pale_blue">#537A8C</color>
 </resources>
