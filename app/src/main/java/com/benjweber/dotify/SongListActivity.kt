@@ -20,7 +20,6 @@ class  SongListActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_song_list)
         title = "All Songs"
-        library = library.subList(0, 5)
 
         val songListAdapter = SongListAdapter(library)
         songListAdapter.onSongClicked = { song ->
