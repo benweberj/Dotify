@@ -3,9 +3,7 @@ package com.benjweber.dotify
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
-import android.widget.Toolbar
 import androidx.recyclerview.widget.RecyclerView
 import com.benjweber.dotify.MainActivity.Companion.CURRENT_SONG
 import com.ericchee.songdataprovider.Song
@@ -16,23 +14,30 @@ import kotlinx.android.synthetic.main.activity_song_list.*
 class  SongListActivity : AppCompatActivity() {
     private val rvSongs: RecyclerView by lazy { findViewById<RecyclerView>(R.id.rvSongs) }
     private var selectedSong: Song? = null
-
+    private var library: List<Song> =  SongDataProvider.getAllSongs()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_song_list)
+        title = "All Songs"
+        library = library.subList(0, 5)
 
-        var library = SongDataProvider.getAllSongs()
         val songListAdapter = SongListAdapter(library)
-
         songListAdapter.onSongClicked = { song ->
             selectedSong = song
             if (song.title == "Thought Contagion") Toast.makeText(this, "Now that's a nice choice." ,Toast.LENGTH_SHORT).show()
             tvCurrentSong.text = "${song.title} - ${song.artist}"
         }
+        // Remove the song from this class's library so shuffling doesn't add them back
+        songListAdapter.onSongLongClicked = { pos ->
+            Toast.makeText(this, "\"${library[pos].title}\" deleted", Toast.LENGTH_SHORT).show()
+            library = library.toMutableList().apply {
+                removeAt(pos)
+            }.toList()
+        }
         rvSongs.adapter = songListAdapter
 
-        miniPlayer.bringToFront() // Not sure if theres a way to do this in xml
+        miniPlayer.bringToFront()
         miniPlayer.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
             intent.putExtra(CURRENT_SONG, selectedSong)
@@ -40,12 +45,10 @@ class  SongListActivity : AppCompatActivity() {
         }
 
         ibShuffle.setOnClickListener {
-            // Hacky way to do this but idk why I can't shuffle library directly.
-            // Seems like its immutable, but idk why or how to fix that
-            var newLib = mutableListOf<Song>()
-            for (s in library) newLib.add(s)
-            newLib.shuffle()
-            songListAdapter.shuffleLibrary(newLib)
+            library = library.toMutableList().apply {
+                shuffle()
+            }.toList()
+            songListAdapter.shuffleLibrary(library)
         }
     }
 }

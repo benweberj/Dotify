@@ -5,9 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:padding="10dp"
-    android:foreground="?selectableItemBackground"
-    >
-<!--    android:layout_margin="5dp"-->
+    android:foreground="?selectableItemBackground">
 
     <ImageView
         android:id="@+id/imgThumbnail"
@@ -16,9 +14,6 @@
         android:layout_width="60dp"
         android:layout_height="60dp"
         tools:src="@drawable/dotify" />
-
-    />
-
     <TextView
         android:id="@+id/tvSongName"
         app:layout_constraintTop_toTopOf="@id/imgThumbnail"
@@ -30,9 +25,7 @@
         android:layout_marginLeft="20dp"
         android:textColor="#fff"
         app:layout_constraintLeft_toRightOf="@id/imgThumbnail"
-        app:layout_constraintVertical_chainStyle="packed"
-    />
-
+        app:layout_constraintVertical_chainStyle="packed" />
     <TextView
         android:id="@+id/tvArtistName"
         android:layout_width="wrap_content"

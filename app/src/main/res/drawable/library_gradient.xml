@@ -2,10 +2,7 @@
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="rectangle" >
 
-    <!--
-    Background gradient for song select screen. The only part that shows through is
-    in each song item's bottom margin, so it creates a vertical fading line effect.
-    -->
+    <!--  gray radial gradient for song select screen  -->
     <gradient
         android:startColor="#444"
         android:endColor="#111"

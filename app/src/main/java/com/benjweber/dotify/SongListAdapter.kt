@@ -1,14 +1,10 @@
 package com.benjweber.dotify
 
-import android.content.Context
-import android.graphics.Color
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.ericchee.songdataprovider.Song
@@ -16,6 +12,7 @@ import com.ericchee.songdataprovider.Song
 class SongListAdapter(library: List<Song>): RecyclerView.Adapter<SongListAdapter.SongViewHolder>() {
     private var library: List<Song> = library.toList()
     var onSongClicked: ((song: Song) -> Unit)? = null
+    var onSongLongClicked: ((pos: Int) -> Unit)? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SongViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_song, parent, false)
@@ -26,11 +23,11 @@ class SongListAdapter(library: List<Song>): RecyclerView.Adapter<SongListAdapter
 
     override fun onBindViewHolder(holder: SongViewHolder, position: Int) {
         val song = library[position]
-        holder.attach(song)
+        holder.attach(song, position)
     }
 
     fun shuffleLibrary(newLibrary: List<Song>) {
-        val callback = SongDiffCallback(library, newLibrary)
+        val callback = SongDiffCallback(newLibrary, library)
         val diff = DiffUtil.calculateDiff(callback)
         diff.dispatchUpdatesTo(this)
         library = newLibrary
@@ -41,7 +38,7 @@ class SongListAdapter(library: List<Song>): RecyclerView.Adapter<SongListAdapter
         private val tvArtistName by lazy { itemView.findViewById<TextView>(R.id.tvArtistName) }
         private val imgThumbnail by lazy { itemView.findViewById<ImageView>(R.id.imgThumbnail) }
 
-        fun attach(song: Song) {
+        fun attach(song: Song, position: Int) {
             tvSongName.text = song.title
             tvArtistName.text = song.artist
             var album = song.smallImageID
@@ -50,6 +47,16 @@ class SongListAdapter(library: List<Song>): RecyclerView.Adapter<SongListAdapter
 
             itemView.setOnClickListener {
                 onSongClicked?.invoke(song)
+            }
+
+            itemView.setOnLongClickListener {
+                library = library.toMutableList().apply {
+                    removeAt(position)
+                }.toList()
+                notifyItemRemoved(position)
+                notifyItemRangeChanged(position, library.size)
+                onSongLongClicked?.invoke(position)
+                return@setOnLongClickListener true
             }
         }
     }

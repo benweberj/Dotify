@@ -14,17 +14,12 @@ class SongDiffCallback(private val oldLibrary: List<Song>, private val newLibrar
     }
 
     override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-        val oldId = oldLibrary[oldItemPosition].id
-        val newId = newLibrary[newItemPosition].id
-        return oldId == newId
+        return oldLibrary[oldItemPosition].id == newLibrary[newItemPosition].id
     }
 
     override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-        val oldSong = oldLibrary[oldItemPosition]
-        val newSong = newLibrary[newItemPosition]
-        return oldSong.title == newSong.title &&
-                oldSong.artist == newSong.artist &&
-                oldSong.smallImageID == newSong.smallImageID
+        val oldSong = oldLibrary[newItemPosition]
+        val newSong = newLibrary[oldItemPosition]
+        return oldSong == newSong
     }
-
 }
