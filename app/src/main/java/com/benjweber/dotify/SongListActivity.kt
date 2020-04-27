@@ -36,6 +36,10 @@ class  SongListActivity : AppCompatActivity() {
         }
         rvSongs.adapter = songListAdapter
 
+        btnGoToAdd.setOnClickListener {
+            startActivity(Intent(this, AddSongActivity::class.java))
+        }
+
         miniPlayer.bringToFront()
         miniPlayer.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)

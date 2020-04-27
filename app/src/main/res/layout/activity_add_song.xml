@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/library_gradient"
+    tools:context=".AddSongActivity">
+
+    <TextView
+        android:id="@+id/tvSong"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Song name"
+        android:textFontWeight="900"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginTop="100dp"
+        android:textSize="25sp"
+        android:fontFamily="monospace"
+        android:textColor="#fff"
+        app:layout_constraintRight_toRightOf="parent"/>
+    <EditText
+        android:id="@+id/etSong"
+        android:text="Thought Contagion"
+        android:textColor="@color/light_green"
+        app:layout_constraintTop_toBottomOf="@id/tvSong"
+        android:layout_width="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/tvArtist"
+        app:layout_constraintTop_toBottomOf="@id/etSong"
+        android:layout_marginTop="30dp"
+        android:layout_width="wrap_content"
+        android:textSize="25sp"
+        android:hint="Artist name"
+        android:textFontWeight="100"
+        android:textColor="#fff"
+        android:fontFamily="monospace"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+    <EditText
+        android:textColor="@color/light_green"
+        android:id="@+id/etArtist"
+        app:layout_constraintTop_toBottomOf="@id/tvArtist"
+        android:layout_width="wrap_content"
+        android:text="Muse"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+    <Button
+        android:id="@+id/btnAddSong"
+        android:layout_width="150dp"
+        android:background="#fff"
+        android:layout_height="wrap_content"
+        android:text="Add song"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/etArtist"
+        android:layout_marginTop="50dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
