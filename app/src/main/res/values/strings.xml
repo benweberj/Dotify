@@ -9,4 +9,7 @@
     <string name="album_art_alt">Song\'s album art</string>
     <string name="username_hint">Username…</string>
     <string name="shuffle_alt">Shuffle icon</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

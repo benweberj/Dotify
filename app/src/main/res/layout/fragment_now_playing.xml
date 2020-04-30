@@ -5,9 +5,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.Activity"
+    tools:context=".fragment.NowPlayingFragment"
     android:padding="16dp"
-    android:background="@drawable/player_gradient">
+    android:background="#885b9bea">
+<!--    android:background="@drawable/player_gradient"-->
     <ImageView
         android:id="@+id/ivAlbumCover"
         android:layout_width="0dp"
