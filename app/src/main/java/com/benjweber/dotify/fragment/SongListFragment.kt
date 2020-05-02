@@ -3,7 +3,6 @@ package com.benjweber.dotify.fragment
 import android.content.Context
 import android.os.Bundle
 import android.os.Parcelable
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -32,11 +31,9 @@ class SongListFragment(): Fragment() {
 
         if (savedInstanceState != null) {
             library = savedInstanceState.getParcelableArrayList<Song>("out_library") as List<Song>
-            Log.i("bjw", "Recreating. The library has ${library.size} songs")
         } else {
             arguments?.let { args ->
                 library = args.getParcelableArrayList<Song>("arg_library") as List<Song>
-                Log.i("bjw", "creating from scratch. The library has ${library.size} songs")
             }
         }
     }

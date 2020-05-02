@@ -1,7 +1,6 @@
 package com.benjweber.dotify.activity
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -22,48 +21,56 @@ class Activity: AppCompatActivity(), OnSongClickListener {
         super.onCreate(savedInstanceBundle)
         setContentView(R.layout.activity)
 
-        val songListFrag = SongListFragment()
+        var songListFrag = getSongListFrag()
         if (savedInstanceBundle != null) {
             selectedSong = savedInstanceBundle.getParcelable("out_sel_song")
             tvCurrentSong.text = "${selectedSong?.title} - ${selectedSong?.artist}"
         } else {
+            if (songListFrag == null) songListFrag = SongListFragment()
+
             songListFrag.arguments = Bundle().apply { putParcelableArrayList("arg_library", library as ArrayList) }
             supportFragmentManager
                 .beginTransaction()
                 .add(R.id.fragContainer, songListFrag, "songlist")
-                .addToBackStack("")
                 .commit()
-
-            ibShuffle.setOnClickListener {
-                songListFrag.shuffleList()
-            }
         }
 
-        val nowPlayingFrag = NowPlayingFragment()
-        miniPlayer.setOnClickListener {
-            nowPlayingFrag.arguments = Bundle().apply { putParcelable("arg_song", selectedSong) }
+        ibShuffle.setOnClickListener {
+            songListFrag?.shuffleList()
+        }
 
-            supportFragmentManager
-                .beginTransaction()
-                .add(R.id.fragContainer, nowPlayingFrag, "nowplaying")
-                .addToBackStack("")
-                .commit()
+        miniPlayer.setOnClickListener {
+            if (selectedSong != null) {
+                val nowPlayingFrag = NowPlayingFragment()
+                nowPlayingFrag.arguments = Bundle().apply { putParcelable("arg_song", selectedSong) }
+
+                supportFragmentManager
+                    .beginTransaction()
+                    .add(R.id.fragContainer, nowPlayingFrag, "nowplaying")
+                    .addToBackStack("")
+                    .commit()
+            }
         }
 
         supportFragmentManager.addOnBackStackChangedListener {
-            val hasBS = supportFragmentManager.backStackEntryCount > 1
-            supportActionBar?.setDisplayHomeAsUpEnabled(hasBS)
-
-            if (hasBS) {
-                title = "Now Playing"
-                miniPlayer.visibility = View.INVISIBLE
-            } else {
-                title = "All Songs"
-                miniPlayer.visibility = View.VISIBLE
-            }
-            // This displays 'Dotify' at the start then 'All Songs' when the user comes back.
-            // Prolly wouldn't lose points, but just wanted to mention this was intentional.
+            setNavigation()
         }
+        setNavigation()
+    }
+
+    private fun setNavigation() {
+        val hasBS = supportFragmentManager.backStackEntryCount > 0
+        supportActionBar?.setDisplayHomeAsUpEnabled(hasBS)
+
+        if (hasBS) {
+            title = "Now Playing"
+            miniPlayer.visibility = View.INVISIBLE
+        } else {
+            title = "All Songs"
+            miniPlayer.visibility = View.VISIBLE
+        }
+        // This displays 'Dotify' at the start then 'All Songs' when the user comes back.
+        // Prolly wouldn't lose points, but just wanted to mention this was intentional.
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
@@ -72,6 +79,7 @@ class Activity: AppCompatActivity(), OnSongClickListener {
     }
 
     private fun getNowPlayingFrag() = supportFragmentManager.findFragmentByTag("nowplaying") as NowPlayingFragment?
+    private fun getSongListFrag() = supportFragmentManager.findFragmentByTag("songlist") as SongListFragment?
 
     override fun onSupportNavigateUp(): Boolean {
         val npFrag = getNowPlayingFrag()
@@ -84,7 +92,6 @@ class Activity: AppCompatActivity(), OnSongClickListener {
 
     override fun onSongClicked(song: Song) {
 //        getNowPlayingFrag().let {
-        Log.i("bjw","backstack count: ${supportFragmentManager.backStackEntryCount}")
         getNowPlayingFrag()?.updateSong(song)
 
         selectedSong = song
