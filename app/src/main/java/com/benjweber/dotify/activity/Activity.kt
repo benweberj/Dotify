@@ -52,9 +52,7 @@ class Activity: AppCompatActivity(), OnSongClickListener {
             }
         }
 
-        supportFragmentManager.addOnBackStackChangedListener {
-            setNavigation()
-        }
+        supportFragmentManager.addOnBackStackChangedListener { setNavigation() }
         setNavigation()
     }
 
@@ -69,8 +67,6 @@ class Activity: AppCompatActivity(), OnSongClickListener {
             title = "All Songs"
             miniPlayer.visibility = View.VISIBLE
         }
-        // This displays 'Dotify' at the start then 'All Songs' when the user comes back.
-        // Prolly wouldn't lose points, but just wanted to mention this was intentional.
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
