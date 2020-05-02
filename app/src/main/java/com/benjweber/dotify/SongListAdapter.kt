@@ -1,5 +1,6 @@
 package com.benjweber.dotify
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -45,9 +46,7 @@ class SongListAdapter(library: List<Song>): RecyclerView.Adapter<SongListAdapter
             if (song.title == "Thought Contagion") album = R.drawable.muse_cover
             imgThumbnail.setImageResource(album)
 
-            itemView.setOnClickListener {
-                onSongClicked?.invoke(song)
-            }
+            itemView.setOnClickListener { onSongClicked?.invoke(song) }
 
             itemView.setOnLongClickListener {
                 library = library.toMutableList().apply {
