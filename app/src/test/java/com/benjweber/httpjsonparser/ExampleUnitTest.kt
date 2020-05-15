@@ -1,4 +1,4 @@
-package com.benjweber.dotify
+package com.benjweber.httpjsonparser
 
 import org.junit.Test
 

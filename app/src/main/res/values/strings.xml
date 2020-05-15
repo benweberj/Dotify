@@ -1,15 +1,3 @@
 <resources>
-    <string name="app_name">Dotify</string>
-    <string name="username">ben.weberj</string>
-    <string name="change_user">Change User</string>
-    <string name="song_name">Thought Contagion</string>
-    <string name="artist_name">Muse</string>
-    <string name="play_count_default">69 plays</string>
-    <string name="user_icon_alt">User profile picture</string>
-    <string name="album_art_alt">Song\'s album art</string>
-    <string name="username_hint">Username…</string>
-    <string name="shuffle_alt">Shuffle icon</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="app_name">HTTP JSON Parser</string>
 </resources>

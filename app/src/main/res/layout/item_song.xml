@@ -1,40 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:padding="10dp"
-    android:foreground="?selectableItemBackground">
+    tools:background="#000"
+    android:padding="5dp"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <ImageView
-        android:id="@+id/imgThumbnail"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        tools:src="@drawable/dotify" />
-    <TextView
-        android:id="@+id/tvSongName"
-        app:layout_constraintTop_toTopOf="@id/imgThumbnail"
-        app:layout_constraintBottom_toTopOf="@id/tvArtistName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:text="Song name"
-        android:textSize="25sp"
-        android:layout_marginLeft="20dp"
-        android:textColor="#fff"
-        app:layout_constraintLeft_toRightOf="@id/imgThumbnail"
-        app:layout_constraintVertical_chainStyle="packed" />
-    <TextView
-        android:id="@+id/tvArtistName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:textColor="#ccc"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="@+id/imgThumbnail"
-        app:layout_constraintLeft_toRightOf="@id/imgThumbnail"
-        app:layout_constraintTop_toBottomOf="@id/tvSongName"
-        tools:text="Artist name" />
+        <ImageView
+            android:id="@+id/imgThumbnail"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            tools:src="@drawable/ic_launcher_foreground" />
+        <TextView
+            android:id="@+id/tvSongName"
+            app:layout_constraintTop_toTopOf="@id/imgThumbnail"
+            app:layout_constraintBottom_toTopOf="@id/tvArtistName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="Song name"
+            android:textSize="20sp"
+            android:layout_marginLeft="20dp"
+            android:textColor="#fff"
+            app:layout_constraintLeft_toRightOf="@id/imgThumbnail"
+            app:layout_constraintVertical_chainStyle="packed" />
+        <TextView
+            android:id="@+id/tvArtistName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:textColor="#ccc"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@+id/imgThumbnail"
+            app:layout_constraintLeft_toRightOf="@id/imgThumbnail"
+            app:layout_constraintTop_toBottomOf="@id/tvSongName"
+            tools:text="Artist name" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

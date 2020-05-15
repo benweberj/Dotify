@@ -1,7 +1,7 @@
-package com.benjweber.dotify
+package com.benjweber.httpjsonparser
 
 import androidx.recyclerview.widget.DiffUtil
-import com.ericchee.songdataprovider.Song
+import com.benjweber.httpjsonparser.model.Song
 
 class SongDiffCallback(private val oldLibrary: List<Song>, private val newLibrary: List<Song>): DiffUtil.Callback() {
 
@@ -14,7 +14,8 @@ class SongDiffCallback(private val oldLibrary: List<Song>, private val newLibrar
     }
 
     override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-        return oldLibrary[oldItemPosition].id == newLibrary[newItemPosition].id
+        return oldLibrary[oldItemPosition].title == newLibrary[newItemPosition].title
+        // either make id or stick with this bad check
     }
 
     override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
